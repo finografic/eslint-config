@@ -1,0 +1,44 @@
+# COMPILED BUILD
+
+# ignore dist folders anywhere
+dist/
+# ignore lib folder in root ONLY
+/lib/
+# /dist/ # Only ignore dist in root
+# /**/dist/ # Ignore dist folders anywhere (if you want)
+
+# If you have other build folders to ignore
+/build/
+/.next/
+
+# Turbo
+/.turbo
+**/.turbo
+
+# vendor libs
+.eslintcache
+
+# deps
+node_modules/
+
+# LOGS
+logs/**/*
+
+# dev
+.yarn/
+!.yarn/releases
+# .vscode/*
+# !.vscode/launch.json
+# !.vscode/*.code-snippets
+
+# logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# misc
+.DS_Store
