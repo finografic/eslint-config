@@ -1,16 +1,8 @@
-import {
-  base,
-  development,
-  emotion,
-  imports,
-  prettier,
-  react,
-  typescript,
-} from '../configs';
+import { base, development, emotion, imports, prettier, react, typescript } from '../configs';
 import { IGNORES } from '../constants';
 import type { CreateConfigOptions } from '../types';
 
-export const reactAppPreset = (options: CreateConfigOptions = {}) => [
+export const reactAppPreset = (_options: CreateConfigOptions = {}) => [
   {
     // Base config for all files
     files: ['**/*.{js,jsx,ts,tsx}'],
@@ -29,12 +21,7 @@ export const reactAppPreset = (options: CreateConfigOptions = {}) => [
   },
   {
     // Development/Debug files
-    files: [
-      '**/*.dev.{ts,tsx}',
-      '**/*.test.{ts,tsx}',
-      '**/debug/**/*',
-      '**/*-debug.*',
-    ],
+    files: ['**/*.dev.{ts,tsx}', '**/*.test.{ts,tsx}', '**/debug/**/*', '**/*-debug.*'],
     ...development.relaxed,
   },
 ];

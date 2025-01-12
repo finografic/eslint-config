@@ -1,5 +1,5 @@
 import type { ESLintConfig } from '../types';
-import { ERROR, WARN, OFF } from '../constants';
+import { ERROR, OFF } from '../constants';
 import { loadPlugin } from '../utils/load-plugin.js';
 
 const lodashPlugin = loadPlugin('eslint-plugin-lodash');

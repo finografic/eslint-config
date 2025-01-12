@@ -1,15 +1,8 @@
-import {
-  base,
-  development,
-  imports,
-  // lodash,
-  prettier,
-  typescript,
-} from '../configs';
+import { base, development, imports, prettier, typescript } from '../configs';
 import type { CreateConfigOptions } from '../types';
 import { OFF, WARN, IGNORES } from '../constants';
 
-export const cliAppPreset = (options: CreateConfigOptions = {}) => [
+export const cliAppPreset = (_options: CreateConfigOptions = {}) => [
   {
     // Base config for all files
     files: ['**/*.{js,ts}'],

@@ -1,5 +1,5 @@
 import type { ESLintConfig } from '../types';
-import { ERROR, WARN } from '../constants';
+import { ERROR } from '../constants';
 import { loadPlugin } from '../utils/load-plugin.js';
 
 const prettierPlugin = loadPlugin('eslint-plugin-prettier');

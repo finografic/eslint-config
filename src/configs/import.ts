@@ -1,5 +1,5 @@
 import type { ESLintConfig } from '../types';
-import { ERROR, WARN, OFF } from '../constants';
+import { ERROR, OFF } from '../constants';
 import { loadPlugin } from '../utils/load-plugin.js';
 
 const importPlugin = loadPlugin('eslint-plugin-import');
@@ -21,16 +21,7 @@ export const imports = {
       'import/order': [
         ERROR,
         {
-          'groups': [
-            'builtin',
-            'external',
-            'internal',
-            'parent',
-            'sibling',
-            'index',
-            'object',
-            'type',
-          ],
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
           'newlines-between': 'always',
         },
       ],

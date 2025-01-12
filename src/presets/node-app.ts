@@ -2,7 +2,7 @@ import { development, imports, prettier, typescript } from '../configs';
 import type { CreateConfigOptions } from '../types';
 import { IGNORES } from '../constants';
 
-export const nodeAppPreset = (options: CreateConfigOptions = {}) => [
+export const nodeAppPreset = (_options: CreateConfigOptions = {}) => [
   {
     // Base config
     files: ['**/*.{js,ts}'],
