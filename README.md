@@ -25,3 +25,11 @@ Keep the `workspace:*` specifier since it's still a workspace package
   "@finografic/eslint-config": "workspace:*"
 }
 ```
+
+
+## run alias helper `_gps` to push new commits to the submodule
+
+```sh
+_gca "updated eslint-config"
+_gps
+```
