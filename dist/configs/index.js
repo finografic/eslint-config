@@ -1,9 +1,20 @@
-export { base } from './base.js';
-export { development } from './development.js';
-export { emotion } from './emotion.js';
-export { imports } from './import.js';
-export { lodash } from './lodash.js';
-export { prettier } from './prettier.js';
-export { react } from './react.js';
-export { typescript } from './typescript.js';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.typescript = exports.react = exports.prettier = exports.lodash = exports.imports = exports.emotion = exports.development = exports.base = void 0;
+var base_1 = require("./base");
+Object.defineProperty(exports, "base", { enumerable: true, get: function () { return base_1.base; } });
+var development_1 = require("./development");
+Object.defineProperty(exports, "development", { enumerable: true, get: function () { return development_1.development; } });
+var emotion_js_1 = require("./emotion.js");
+Object.defineProperty(exports, "emotion", { enumerable: true, get: function () { return emotion_js_1.emotion; } });
+var import_js_1 = require("./import.js");
+Object.defineProperty(exports, "imports", { enumerable: true, get: function () { return import_js_1.imports; } });
+var lodash_js_1 = require("./lodash.js");
+Object.defineProperty(exports, "lodash", { enumerable: true, get: function () { return lodash_js_1.lodash; } });
+var prettier_js_1 = require("./prettier.js");
+Object.defineProperty(exports, "prettier", { enumerable: true, get: function () { return prettier_js_1.prettier; } });
+var react_js_1 = require("./react.js");
+Object.defineProperty(exports, "react", { enumerable: true, get: function () { return react_js_1.react; } });
+var typescript_1 = require("./typescript");
+Object.defineProperty(exports, "typescript", { enumerable: true, get: function () { return typescript_1.typescript; } });
 //# sourceMappingURL=index.js.map

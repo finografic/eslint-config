@@ -1,5 +1,5 @@
 import type { CreateConfigOptions } from '../types';
-export declare const reactAppPreset: (options?: CreateConfigOptions) => ({
+export declare const reactAppPreset: (_options?: CreateConfigOptions) => ({
     plugins: {
         prettier: {
             rules: any;

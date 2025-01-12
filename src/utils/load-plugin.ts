@@ -2,11 +2,12 @@
 
 import { createRequire } from "node:module";
 
-const require = createRequire(import.meta.url);
+// Rename the variable to avoid conflict with Node's global require
+const customRequire = createRequire(__filename);
 
 export function loadPlugin(pluginPath: string) {
   try {
-    return require(pluginPath);
+    return customRequire(pluginPath);
   } catch (error) {
     console.error(`Failed to load plugin: ${pluginPath}`);
     console.error(error);

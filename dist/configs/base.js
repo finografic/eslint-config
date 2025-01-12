@@ -1,7 +1,13 @@
-import tseslint from 'typescript-eslint';
-import eslint from '@eslint/js';
-const flatConfigs = tseslint.config(eslint.configs.recommended, ...tseslint.configs.recommended);
-export const base = {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.base = void 0;
+const typescript_eslint_1 = __importDefault(require("typescript-eslint"));
+const js_1 = __importDefault(require("@eslint/js"));
+const flatConfigs = typescript_eslint_1.default.config(js_1.default.configs.recommended, ...typescript_eslint_1.default.configs.recommended);
+exports.base = {
     recommended: flatConfigs[0],
 };
 //# sourceMappingURL=base.js.map

@@ -1,20 +1,23 @@
-import { OFF } from '../constants.js';
-export const development = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.development = void 0;
+const constants_1 = require("../constants");
+exports.development = {
     relaxed: {
         rules: {
             // TypeScript
-            '@typescript-eslint/ban-ts-comment': OFF,
-            '@typescript-eslint/no-explicit-any': OFF,
-            '@typescript-eslint/no-unused-vars': OFF,
+            '@typescript-eslint/ban-ts-comment': constants_1.OFF,
+            '@typescript-eslint/no-explicit-any': constants_1.OFF,
+            '@typescript-eslint/no-unused-vars': constants_1.OFF,
             // General
-            'no-console': OFF,
-            'no-debugger': OFF,
-            'no-unused-vars': OFF,
+            'no-console': constants_1.OFF,
+            'no-debugger': constants_1.OFF,
+            'no-unused-vars': constants_1.OFF,
             // Import/Export
-            'unused-imports/no-unused-vars': OFF,
-            'unused-imports/no-unused-imports': OFF,
+            'unused-imports/no-unused-vars': constants_1.OFF,
+            'unused-imports/no-unused-imports': constants_1.OFF,
             // Other
-            'perfectionist/sort-imports': OFF,
+            'perfectionist/sort-imports': constants_1.OFF,
         },
     },
 };

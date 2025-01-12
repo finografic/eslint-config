@@ -1,8 +1,11 @@
-import { ERROR, OFF } from '../constants.js';
-import { loadPlugin } from '../utils/load-plugin.js';
-const importPlugin = loadPlugin('eslint-plugin-import');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.imports = void 0;
+const constants_1 = require("../constants");
+const load_plugin_js_1 = require("../utils/load-plugin.js");
+const importPlugin = (0, load_plugin_js_1.loadPlugin)('eslint-plugin-import');
 const rules = importPlugin.rules;
-export const imports = {
+exports.imports = {
     recommended: {
         plugins: {
             import: {
@@ -10,24 +13,15 @@ export const imports = {
             },
         },
         rules: {
-            'import/first': ERROR,
-            'import/no-duplicates': ERROR,
-            'import/no-mutable-exports': ERROR,
-            'import/no-named-as-default': OFF,
-            'import/no-named-as-default-member': OFF,
+            'import/first': constants_1.ERROR,
+            'import/no-duplicates': constants_1.ERROR,
+            'import/no-mutable-exports': constants_1.ERROR,
+            'import/no-named-as-default': constants_1.OFF,
+            'import/no-named-as-default-member': constants_1.OFF,
             'import/order': [
-                ERROR,
+                constants_1.ERROR,
                 {
-                    'groups': [
-                        'builtin',
-                        'external',
-                        'internal',
-                        'parent',
-                        'sibling',
-                        'index',
-                        'object',
-                        'type',
-                    ],
+                    groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
                     'newlines-between': 'always',
                 },
             ],

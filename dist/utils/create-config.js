@@ -1,4 +1,7 @@
-export function createConfig(options) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createConfig = createConfig;
+function createConfig(options) {
     const config = {
         files: options.typescript
             ? ['**/*.ts', '**/*.tsx']
