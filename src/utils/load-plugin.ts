@@ -1,4 +1,7 @@
-import { createRequire } from 'module';
+/// <reference types="node" />
+
+import { createRequire } from "node:module";
+
 const require = createRequire(import.meta.url);
 
 export function loadPlugin(pluginPath: string) {
