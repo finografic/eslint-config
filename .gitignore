@@ -1,7 +1,7 @@
 # COMPILED BUILD
 
 # ignore dist folders anywhere
-dist/
+# dist/
 # ignore lib folder in root ONLY
 /lib/
 # /dist/ # Only ignore dist in root
