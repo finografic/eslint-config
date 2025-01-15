@@ -1,4 +1,4 @@
-# @finografic/eslint-config
+# @fino/eslint-config
 
 ```sh
 # 1. Edit pnpm-workspace.yaml to remove the eslint-config directory
