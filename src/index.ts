@@ -1,6 +1,9 @@
-export * from './constants';
+import { fino } from './factory';
+
+export * from './configs';
+export * from './factory';
+export * from './globs';
 export * from './types';
-export * from './configs/development';
-export * from './configs/prettier';
-export * from './utils/create-config';
-export * from './presets';
+export * from './utils';
+
+export default fino;
