@@ -22,6 +22,13 @@ export default fino(
     },
   },
   {
+    files: ['package.json'],
+    rules: {
+      'perfectionist/sort-objects': 'off',
+      'jsonc/sort-keys': 'off',
+    },
+  },
+  {
     files: ['src/configs/*.ts'],
     plugins: {
       'style-migrate': styleMigrate,
