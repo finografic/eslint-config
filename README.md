@@ -20,12 +20,11 @@ git commit -m "Convert eslint-config to submodule"
 
 Keep the `workspace:*` specifier since it's still a workspace package
 
-```json
+```
 "devDependencies": {
   "@finografic/eslint-config": "workspace:*"
 }
 ```
-
 
 ## run alias helper `_gps` to push new commits to the submodule
 

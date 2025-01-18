@@ -5,7 +5,7 @@ import type {
   TypedFlatConfigItem,
 } from '../types';
 import { GLOB_YAML } from '../globs';
-
+import { ERROR, OFF } from '../rule-settings';
 import { interopDefault } from '../utils';
 
 export async function yaml(
@@ -35,34 +35,34 @@ export async function yaml(
       },
       name: 'fino/yaml/rules',
       rules: {
-        'style/spaced-comment': 'off',
+        'style/spaced-comment': OFF,
 
-        'yaml/block-mapping': 'error',
-        'yaml/block-sequence': 'error',
-        'yaml/no-empty-key': 'error',
-        'yaml/no-empty-sequence-entry': 'error',
-        'yaml/no-irregular-whitespace': 'error',
-        'yaml/plain-scalar': 'error',
+        'yaml/block-mapping': ERROR,
+        'yaml/block-sequence': ERROR,
+        'yaml/no-empty-key': ERROR,
+        'yaml/no-empty-sequence-entry': ERROR,
+        'yaml/no-irregular-whitespace': ERROR,
+        'yaml/plain-scalar': ERROR,
 
         ...(stylistic
           ? {
-              'yaml/block-mapping-question-indicator-newline': 'error',
-              'yaml/block-sequence-hyphen-indicator-newline': 'error',
-              'yaml/flow-mapping-curly-newline': 'error',
-              'yaml/flow-mapping-curly-spacing': 'error',
-              'yaml/flow-sequence-bracket-newline': 'error',
-              'yaml/flow-sequence-bracket-spacing': 'error',
-              'yaml/indent': ['error', indent === 'tab' ? 2 : indent],
-              'yaml/key-spacing': 'error',
-              'yaml/no-tab-indent': 'error',
+              'yaml/block-mapping-question-indicator-newline': ERROR,
+              'yaml/block-sequence-hyphen-indicator-newline': ERROR,
+              'yaml/flow-mapping-curly-newline': ERROR,
+              'yaml/flow-mapping-curly-spacing': ERROR,
+              'yaml/flow-sequence-bracket-newline': ERROR,
+              'yaml/flow-sequence-bracket-spacing': ERROR,
+              'yaml/indent': [ERROR, indent === 'tab' ? 2 : indent],
+              'yaml/key-spacing': ERROR,
+              'yaml/no-tab-indent': ERROR,
               'yaml/quotes': [
-                'error',
+                ERROR,
                 {
                   avoidEscape: true,
                   prefer: quotes === 'backtick' ? 'single' : quotes,
                 },
               ],
-              'yaml/spaced-comment': 'error',
+              'yaml/spaced-comment': ERROR,
             }
           : {}),
 

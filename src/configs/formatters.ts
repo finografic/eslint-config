@@ -21,6 +21,7 @@ import {
   GLOB_XML,
 } from '../globs';
 
+import { ERROR, OFF } from '../rule-settings';
 import {
   ensurePackages,
   interopDefault,
@@ -130,7 +131,7 @@ export async function formatters(
         name: 'fino/formatter/css',
         rules: {
           'format/prettier': [
-            'error',
+            ERROR,
             mergePrettierOptions(prettierOptions, {
               parser: 'css',
             }),
@@ -145,7 +146,7 @@ export async function formatters(
         name: 'fino/formatter/scss',
         rules: {
           'format/prettier': [
-            'error',
+            ERROR,
             mergePrettierOptions(prettierOptions, {
               parser: 'scss',
             }),
@@ -160,7 +161,7 @@ export async function formatters(
         name: 'fino/formatter/less',
         rules: {
           'format/prettier': [
-            'error',
+            ERROR,
             mergePrettierOptions(prettierOptions, {
               parser: 'less',
             }),
@@ -179,7 +180,7 @@ export async function formatters(
       name: 'fino/formatter/html',
       rules: {
         'format/prettier': [
-          'error',
+          ERROR,
           mergePrettierOptions(prettierOptions, {
             parser: 'html',
           }),
@@ -197,7 +198,7 @@ export async function formatters(
       name: 'fino/formatter/xml',
       rules: {
         'format/prettier': [
-          'error',
+          ERROR,
           mergePrettierOptions(
             { ...prettierXmlOptions, ...prettierOptions },
             {
@@ -218,7 +219,7 @@ export async function formatters(
       name: 'fino/formatter/svg',
       rules: {
         'format/prettier': [
-          'error',
+          ERROR,
           mergePrettierOptions(
             { ...prettierXmlOptions, ...prettierOptions },
             {
@@ -249,10 +250,10 @@ export async function formatters(
       name: 'fino/formatter/markdown',
       rules: {
         [`format/${formater}`]: [
-          'error',
+          ERROR,
           formater === 'prettier'
             ? mergePrettierOptions(prettierOptions, {
-                embeddedLanguageFormatting: 'off',
+                embeddedLanguageFormatting: OFF,
                 parser: 'markdown',
               })
             : {
@@ -272,9 +273,9 @@ export async function formatters(
         name: 'fino/formatter/slidev',
         rules: {
           'format/prettier': [
-            'error',
+            ERROR,
             mergePrettierOptions(prettierOptions, {
-              embeddedLanguageFormatting: 'off',
+              embeddedLanguageFormatting: OFF,
               parser: 'slidev',
               plugins: ['prettier-plugin-slidev'],
             }),
@@ -293,7 +294,7 @@ export async function formatters(
       name: 'fino/formatter/graphql',
       rules: {
         'format/prettier': [
-          'error',
+          ERROR,
           mergePrettierOptions(prettierOptions, {
             parser: 'graphql',
           }),

@@ -1,13 +1,15 @@
-# to AVOID  dirty-fix `fix-imports.sh`  post-build script (see bottom)
+# to AVOID dirty-fix `fix-imports.sh` post-build script (see bottom)
 
 #### For cleaner approaches to handle ESM imports, here are a few ideas for the future
 
 1. **Build-time Solutions**:
+
 - Use a bundler like Rollup or esbuild that handles ESM outputs more cleanly
 - Try `tsc-alias` or similar tools that can rewrite imports during TypeScript compilation
 - Investigate TypeScript's `moduleResolution: "bundler"` or `moduleResolution: "node16"` options
 
 2. **Source-level Solutions**:
+
 - Use `.js` extensions in source code (TypeScript 5.0+ supports this)
 - Use path aliases and a module resolver
 - Structure code to minimize the need for complex imports
@@ -35,10 +37,9 @@ These projects have likely solved similar problems and might offer cleaner appro
 ## try using Vite + library mode to compile
 
 ```ts
-
+import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { resolve } from 'path';
 
 export default defineConfig({
   build: {

@@ -1,6 +1,6 @@
 import type { TypedFlatConfigItem } from '../types';
-
 import { pluginNode } from '../plugins';
+import { ERROR } from '../rule-settings';
 
 export async function node(): Promise<TypedFlatConfigItem[]> {
   return [
@@ -10,14 +10,14 @@ export async function node(): Promise<TypedFlatConfigItem[]> {
         node: pluginNode,
       },
       rules: {
-        'node/handle-callback-err': ['error', '^(err|error)$'],
-        'node/no-deprecated-api': 'error',
-        'node/no-exports-assign': 'error',
-        'node/no-new-require': 'error',
-        'node/no-path-concat': 'error',
-        'node/prefer-global/buffer': ['error', 'never'],
-        'node/prefer-global/process': ['error', 'never'],
-        'node/process-exit-as-throw': 'error',
+        'node/handle-callback-err': [ERROR, '^(err|error)$'],
+        'node/no-deprecated-api': ERROR,
+        'node/no-exports-assign': ERROR,
+        'node/no-new-require': ERROR,
+        'node/no-path-concat': ERROR,
+        'node/prefer-global/buffer': [ERROR, 'never'],
+        'node/prefer-global/process': [ERROR, 'never'],
+        'node/process-exit-as-throw': ERROR,
       },
     },
   ];

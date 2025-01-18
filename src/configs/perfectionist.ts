@@ -1,6 +1,6 @@
 import type { TypedFlatConfigItem } from '../types';
-
 import { pluginPerfectionist } from '../plugins';
+import { ERROR } from '../rule-settings';
 
 /**
  * Perfectionist plugin for props and items sorting.
@@ -15,8 +15,8 @@ export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
         perfectionist: pluginPerfectionist,
       },
       rules: {
-        'perfectionist/sort-exports': ['error', { order: 'asc', type: 'natural' }],
-        'perfectionist/sort-imports': ['error', {
+        'perfectionist/sort-exports': [ERROR, { order: 'asc', type: 'natural' }],
+        'perfectionist/sort-imports': [ERROR, {
           groups: [
             'type',
             ['parent-type', 'sibling-type', 'index-type', 'internal-type'],
@@ -33,8 +33,8 @@ export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
           order: 'asc',
           type: 'natural',
         }],
-        'perfectionist/sort-named-exports': ['error', { order: 'asc', type: 'natural' }],
-        'perfectionist/sort-named-imports': ['error', { order: 'asc', type: 'natural' }],
+        'perfectionist/sort-named-exports': [ERROR, { order: 'asc', type: 'natural' }],
+        'perfectionist/sort-named-imports': [ERROR, { order: 'asc', type: 'natural' }],
       },
     },
   ];

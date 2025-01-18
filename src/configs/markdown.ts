@@ -1,8 +1,7 @@
 import type { OptionsComponentExts, OptionsFiles, OptionsOverrides, TypedFlatConfigItem } from '../types';
-
 import { mergeProcessors, processorPassThrough } from 'eslint-merge-processors';
 import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE, GLOB_MARKDOWN_IN_MARKDOWN } from '../globs';
-
+import { OFF } from '../rule-settings';
 import { interopDefault, parserPlain } from '../utils';
 
 export async function markdown(
@@ -56,36 +55,36 @@ export async function markdown(
       },
       name: 'fino/markdown/disables',
       rules: {
-        'fino/no-top-level-await': 'off',
+        'fino/no-top-level-await': OFF,
 
-        'import/newline-after-import': 'off',
+        'import/newline-after-import': OFF,
 
-        'no-alert': 'off',
-        'no-console': 'off',
-        'no-labels': 'off',
-        'no-lone-blocks': 'off',
-        'no-restricted-syntax': 'off',
-        'no-undef': 'off',
-        'no-unused-expressions': 'off',
-        'no-unused-labels': 'off',
+        'no-alert': OFF,
+        'no-console': OFF,
+        'no-labels': OFF,
+        'no-lone-blocks': OFF,
+        'no-restricted-syntax': OFF,
+        'no-undef': OFF,
+        'no-unused-expressions': OFF,
+        'no-unused-labels': OFF,
 
-        'no-unused-vars': 'off',
-        'node/prefer-global/process': 'off',
-        'style/comma-dangle': 'off',
+        'no-unused-vars': OFF,
+        'node/prefer-global/process': OFF,
+        'style/comma-dangle': OFF,
 
-        'style/eol-last': 'off',
-        'ts/consistent-type-imports': 'off',
-        'ts/explicit-function-return-type': 'off',
-        'ts/no-namespace': 'off',
-        'ts/no-redeclare': 'off',
-        'ts/no-require-imports': 'off',
-        'ts/no-unused-expressions': 'off',
-        'ts/no-unused-vars': 'off',
-        'ts/no-use-before-define': 'off',
+        'style/eol-last': OFF,
+        'ts/consistent-type-imports': OFF,
+        'ts/explicit-function-return-type': OFF,
+        'ts/no-namespace': OFF,
+        'ts/no-redeclare': OFF,
+        'ts/no-require-imports': OFF,
+        'ts/no-unused-expressions': OFF,
+        'ts/no-unused-vars': OFF,
+        'ts/no-use-before-define': OFF,
 
-        'unicode-bom': 'off',
-        'unused-imports/no-unused-imports': 'off',
-        'unused-imports/no-unused-vars': 'off',
+        'unicode-bom': OFF,
+        'unused-imports/no-unused-imports': OFF,
+        'unused-imports/no-unused-vars': OFF,
 
         ...overrides,
       },

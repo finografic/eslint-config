@@ -1,11 +1,12 @@
+// eslint-disable-next-line ts/ban-ts-comment
 // @ts-nocheck
 
 // NOTE: EXAMPLE ONLY TO INVESTIGATE ANOTHER DAY..
 // TODO: INVESTIGATE ANOTHER DAY !!
 
+import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { resolve } from 'path';
 
 export default defineConfig({
   build: {

@@ -1,5 +1,5 @@
 import type { OptionsUnoCSS, TypedFlatConfigItem } from '../types';
-
+import { ERROR, WARN } from '../rule-settings';
 import { ensurePackages, interopDefault } from '../utils';
 
 export async function unocss(
@@ -27,15 +27,15 @@ export async function unocss(
         unocss: pluginUnoCSS,
       },
       rules: {
-        'unocss/order': 'warn',
+        'unocss/order': WARN,
         ...attributify
           ? {
-              'unocss/order-attributify': 'warn',
+              'unocss/order-attributify': WARN,
             }
           : {},
         ...strict
           ? {
-              'unocss/blocklist': 'error',
+              'unocss/blocklist': ERROR,
             }
           : {},
       },

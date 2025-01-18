@@ -11,6 +11,7 @@ import type {
 import process from 'node:process';
 import { GLOB_MARKDOWN, GLOB_TS, GLOB_TSX } from '../globs';
 import { pluginFino } from '../plugins';
+import { ERROR, OFF } from '../rule-settings';
 import { interopDefault, renameRules } from '../utils';
 
 export async function typescript(
@@ -41,30 +42,30 @@ export async function typescript(
   const isTypeAware = !!tsconfigPath;
 
   const typeAwareRules: TypedFlatConfigItem['rules'] = {
-    'dot-notation': 'off',
-    'no-implied-eval': 'off',
-    'ts/await-thenable': 'error',
-    'ts/dot-notation': ['error', { allowKeywords: true }],
-    'ts/no-floating-promises': 'error',
-    'ts/no-for-in-array': 'error',
-    'ts/no-implied-eval': 'error',
-    'ts/no-misused-promises': 'error',
-    'ts/no-unnecessary-type-assertion': 'error',
-    'ts/no-unsafe-argument': 'error',
-    'ts/no-unsafe-assignment': 'error',
-    'ts/no-unsafe-call': 'error',
-    'ts/no-unsafe-member-access': 'error',
-    'ts/no-unsafe-return': 'error',
-    'ts/promise-function-async': 'error',
-    'ts/restrict-plus-operands': 'error',
-    'ts/restrict-template-expressions': 'error',
-    'ts/return-await': ['error', 'in-try-catch'],
+    'dot-notation': OFF,
+    'no-implied-eval': OFF,
+    'ts/await-thenable': ERROR,
+    'ts/dot-notation': [ERROR, { allowKeywords: true }],
+    'ts/no-floating-promises': ERROR,
+    'ts/no-for-in-array': ERROR,
+    'ts/no-implied-eval': ERROR,
+    'ts/no-misused-promises': ERROR,
+    'ts/no-unnecessary-type-assertion': ERROR,
+    'ts/no-unsafe-argument': ERROR,
+    'ts/no-unsafe-assignment': ERROR,
+    'ts/no-unsafe-call': ERROR,
+    'ts/no-unsafe-member-access': ERROR,
+    'ts/no-unsafe-return': ERROR,
+    'ts/promise-function-async': ERROR,
+    'ts/restrict-plus-operands': ERROR,
+    'ts/restrict-template-expressions': ERROR,
+    'ts/return-await': [ERROR, 'in-try-catch'],
     'ts/strict-boolean-expressions': [
-      'error',
+      ERROR,
       { allowNullableBoolean: true, allowNullableObject: true },
     ],
-    'ts/switch-exhaustiveness-check': 'error',
-    'ts/unbound-method': 'error',
+    'ts/switch-exhaustiveness-check': ERROR,
+    'ts/unbound-method': ERROR,
   };
 
   const [pluginTs, parserTs] = await Promise.all([
@@ -128,56 +129,56 @@ export async function typescript(
         ...renameRules(pluginTs.configs.strict.rules!, {
           '@typescript-eslint': 'ts',
         }),
-        'no-dupe-class-members': 'off',
-        'no-redeclare': 'off',
-        'no-use-before-define': 'off',
-        'no-useless-constructor': 'off',
+        'no-dupe-class-members': OFF,
+        'no-redeclare': OFF,
+        'no-use-before-define': OFF,
+        'no-useless-constructor': OFF,
         'ts/ban-ts-comment': [
-          'error',
+          ERROR,
           { 'ts-expect-error': 'allow-with-description' },
         ],
-        'ts/consistent-type-definitions': ['error', 'interface'],
+        'ts/consistent-type-definitions': [ERROR, 'interface'],
         'ts/consistent-type-imports': [
-          'error',
+          ERROR,
           {
             disallowTypeAnnotations: false,
             prefer: 'type-imports',
           },
         ],
 
-        'ts/method-signature-style': ['error', 'property'], // https://www.totaltypescript.com/method-shorthand-syntax-considered-harmful
-        'ts/no-dupe-class-members': 'error',
-        'ts/no-dynamic-delete': 'off',
-        'ts/no-empty-object-type': ['error', { allowInterfaces: 'always' }],
-        'ts/no-explicit-any': 'off',
-        'ts/no-extraneous-class': 'off',
-        'ts/no-import-type-side-effects': 'error',
-        'ts/no-invalid-void-type': 'off',
-        'ts/no-non-null-assertion': 'off',
-        'ts/no-redeclare': ['error', { builtinGlobals: false }],
-        'ts/no-require-imports': 'error',
+        'ts/method-signature-style': [ERROR, 'property'], // https://www.totaltypescript.com/method-shorthand-syntax-considered-harmful
+        'ts/no-dupe-class-members': ERROR,
+        'ts/no-dynamic-delete': OFF,
+        'ts/no-empty-object-type': [ERROR, { allowInterfaces: 'always' }],
+        'ts/no-explicit-any': OFF,
+        'ts/no-extraneous-class': OFF,
+        'ts/no-import-type-side-effects': ERROR,
+        'ts/no-invalid-void-type': OFF,
+        'ts/no-non-null-assertion': OFF,
+        'ts/no-redeclare': [ERROR, { builtinGlobals: false }],
+        'ts/no-require-imports': ERROR,
         'ts/no-unused-expressions': [
-          'error',
+          ERROR,
           {
             allowShortCircuit: true,
             allowTaggedTemplates: true,
             allowTernary: true,
           },
         ],
-        'ts/no-unused-vars': 'off',
+        'ts/no-unused-vars': OFF,
         'ts/no-use-before-define': [
-          'error',
+          ERROR,
           { classes: false, functions: false, variables: true },
         ],
-        'ts/no-useless-constructor': 'off',
-        'ts/no-wrapper-object-types': 'error',
-        'ts/triple-slash-reference': 'off',
-        'ts/unified-signatures': 'off',
+        'ts/no-useless-constructor': OFF,
+        'ts/no-wrapper-object-types': ERROR,
+        'ts/triple-slash-reference': OFF,
+        'ts/unified-signatures': OFF,
 
         ...(type === 'lib'
           ? {
               'ts/explicit-function-return-type': [
-                'error',
+                ERROR,
                 {
                   allowExpressions: true,
                   allowHigherOrderFunctions: true,

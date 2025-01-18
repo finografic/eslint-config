@@ -1,4 +1,5 @@
 import type { TypedFlatConfigItem } from '../types';
+import { ERROR } from '../rule-settings';
 
 /**
  * Sort package.json
@@ -12,14 +13,14 @@ export async function sortPackageJson(): Promise<TypedFlatConfigItem[]> {
       name: 'fino/sort/package-json',
       rules: {
         'jsonc/sort-array-values': [
-          'error',
+          ERROR,
           {
             order: { type: 'asc' },
             pathPattern: '^files$',
           },
         ],
         'jsonc/sort-keys': [
-          'error',
+          ERROR,
           {
             order: [
               'publisher',
@@ -120,7 +121,7 @@ export function sortTsconfig(): TypedFlatConfigItem[] {
       name: 'fino/sort/tsconfig-json',
       rules: {
         'jsonc/sort-keys': [
-          'error',
+          ERROR,
           {
             order: [
               'extends',

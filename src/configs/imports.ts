@@ -1,6 +1,6 @@
 import type { OptionsStylistic, TypedFlatConfigItem } from '../types';
-
 import { pluginFino, pluginImport } from '../plugins';
+import { ERROR } from '../rule-settings';
 
 export async function imports(options: OptionsStylistic = {}): Promise<TypedFlatConfigItem[]> {
   const {
@@ -15,20 +15,20 @@ export async function imports(options: OptionsStylistic = {}): Promise<TypedFlat
         import: pluginImport,
       },
       rules: {
-        'fino/import-dedupe': 'error',
-        'fino/no-import-dist': 'error',
-        'fino/no-import-node-modules-by-path': 'error',
+        'fino/import-dedupe': ERROR,
+        'fino/no-import-dist': ERROR,
+        'fino/no-import-node-modules-by-path': ERROR,
 
-        'import/first': 'error',
-        'import/no-duplicates': 'error',
-        'import/no-mutable-exports': 'error',
-        'import/no-named-default': 'error',
-        'import/no-self-import': 'error',
-        'import/no-webpack-loader-syntax': 'error',
+        'import/first': ERROR,
+        'import/no-duplicates': ERROR,
+        'import/no-mutable-exports': ERROR,
+        'import/no-named-default': ERROR,
+        'import/no-self-import': ERROR,
+        'import/no-webpack-loader-syntax': ERROR,
 
         ...stylistic
           ? {
-              'import/newline-after-import': ['error', { count: 1 }],
+              'import/newline-after-import': [ERROR, { count: 1 }],
             }
           : {},
       },

@@ -1,7 +1,7 @@
 // @ts-expect-error missing types
 import styleMigrate from '@stylistic/eslint-plugin-migrate';
-
 import { fino } from './src';
+import { ERROR, OFF } from './src/rule-settings';
 
 export default fino(
   {
@@ -18,14 +18,14 @@ export default fino(
   {
     files: ['src/**/*.ts'],
     rules: {
-      'perfectionist/sort-objects': 'error',
+      'perfectionist/sort-objects': ERROR,
     },
   },
   {
     files: ['package.json'],
     rules: {
-      'perfectionist/sort-objects': 'off',
-      'jsonc/sort-keys': 'off',
+      'perfectionist/sort-objects': OFF,
+      'jsonc/sort-keys': OFF,
     },
   },
   {
@@ -34,7 +34,7 @@ export default fino(
       'style-migrate': styleMigrate,
     },
     rules: {
-      'style-migrate/migrate': ['error', { namespaceTo: 'style' }],
+      'style-migrate/migrate': [ERROR, { namespaceTo: 'style' }],
     },
   },
 );

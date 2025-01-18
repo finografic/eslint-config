@@ -5,6 +5,7 @@ import type {
 } from '../types';
 
 import { pluginFino } from '../plugins';
+import { ERROR } from '../rule-settings';
 import { interopDefault } from '../utils';
 
 export const StylisticConfigDefaults: StylisticConfig = {
@@ -56,17 +57,17 @@ export async function stylistic(
       rules: {
         ...config.rules,
 
-        'fino/consistent-chaining': 'error',
-        'fino/consistent-list-newline': 'error',
+        'fino/consistent-chaining': ERROR,
+        'fino/consistent-list-newline': ERROR,
 
         ...(lessOpinionated
           ? {
-              curly: ['error', 'all'],
+              curly: [ERROR, 'all'],
             }
           : {
-              'fino/curly': 'error',
-              'fino/if-newline': 'error',
-              'fino/top-level-function': 'error',
+              'fino/curly': ERROR,
+              'fino/if-newline': ERROR,
+              'fino/top-level-function': ERROR,
             }),
 
         ...overrides,

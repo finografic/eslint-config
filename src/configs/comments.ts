@@ -1,6 +1,7 @@
 import type { TypedFlatConfigItem } from '../types';
 
 import { pluginComments } from '../plugins';
+import { ERROR } from '../rule-settings';
 
 export async function comments(): Promise<TypedFlatConfigItem[]> {
   return [
@@ -10,10 +11,10 @@ export async function comments(): Promise<TypedFlatConfigItem[]> {
         'eslint-comments': pluginComments,
       },
       rules: {
-        'eslint-comments/no-aggregating-enable': 'error',
-        'eslint-comments/no-duplicate-disable': 'error',
-        'eslint-comments/no-unlimited-disable': 'error',
-        'eslint-comments/no-unused-enable': 'error',
+        'eslint-comments/no-aggregating-enable': ERROR,
+        'eslint-comments/no-duplicate-disable': ERROR,
+        'eslint-comments/no-unlimited-disable': ERROR,
+        'eslint-comments/no-unused-enable': ERROR,
       },
     },
   ];

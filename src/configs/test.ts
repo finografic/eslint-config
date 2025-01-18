@@ -1,6 +1,6 @@
 import type { OptionsFiles, OptionsIsInEditor, OptionsOverrides, TypedFlatConfigItem } from '../types';
-
 import { GLOB_TESTS } from '../globs';
+import { ERROR, OFF } from '../rule-settings';
 import { interopDefault } from '../utils';
 
 // Hold the reference so we don't redeclare the plugin on each call
@@ -44,20 +44,20 @@ export async function test(
       files,
       name: 'fino/test/rules',
       rules: {
-        'test/consistent-test-it': ['error', { fn: 'it', withinDescribe: 'it' }],
-        'test/no-identical-title': 'error',
-        'test/no-import-node-test': 'error',
-        'test/no-only-tests': isInEditor ? 'off' : 'error',
+        'test/consistent-test-it': [ERROR, { fn: 'it', withinDescribe: 'it' }],
+        'test/no-identical-title': ERROR,
+        'test/no-import-node-test': ERROR,
+        'test/no-only-tests': isInEditor ? OFF : ERROR,
 
-        'test/prefer-hooks-in-order': 'error',
-        'test/prefer-lowercase-title': 'error',
+        'test/prefer-hooks-in-order': ERROR,
+        'test/prefer-lowercase-title': ERROR,
 
         // Disables
         ...{
-          'fino/no-top-level-await': 'off',
-          'no-unused-expressions': 'off',
-          'node/prefer-global/process': 'off',
-          'ts/explicit-function-return-type': 'off',
+          'fino/no-top-level-await': OFF,
+          'no-unused-expressions': OFF,
+          'node/prefer-global/process': OFF,
+          'ts/explicit-function-return-type': OFF,
         },
 
         ...overrides,
