@@ -3,10 +3,18 @@
   "type": "module",
   "version": "9.18.4",
   "packageManager": "pnpm@10.0.0",
-  "engines": {
-    "node": ">=22.17.1"
+  "description": "Finografic ESLint config (flat config layers)",
+  "license": "MIT",
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "finografic"
+  ],
+  "author": {
+    "name": "Justin",
+    "email": "justin.blair.rankin@gmail.com",
+    "url": "http://finografic.github.com/cv-justin-rankin"
   },
-  "description": "Fingorafic ESLint config",
   "homepage": "https://github.com/finografic/eslint-config",
   "repository": {
     "type": "git",
@@ -18,36 +26,28 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "author": {
-    "name": "Justin",
-    "email": "justin.blair.rankin@gmail.com",
-    "url": "http://finografic.github.com/cv-justin-rankin"
+  "engines": {
+    "node": ">=22"
   },
-  "license": "MIT",
-  "keywords": [
-    "eslint",
-    "eslint-config",
-    "finografic"
-  ],
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "module": "./dist/index.mjs",
   "files": [
-    "bin",
     "dist",
     "templates"
   ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "default": "./dist/index.js"
     }
   },
   "scripts": {
     "========== DEV": "=======================================================",
-    "dev": "npx @eslint/config-inspector --config eslint.config.ts",
+    "dev": "eslint-config-inspector --config eslint.config.ts",
     "·········· BUILD": "·····················································",
-    "build": "pnpm typegen && tsup --format esm,cjs --clean --dts",
+    "build": "pnpm typegen && tsdown",
+    "watch": "tsdown --watch",
     "·········· TESTING": "···················································",
     "test": "vitest",
     "test.run": "vitest run",
@@ -58,11 +58,11 @@
     "·········· FORMATTING": "················································",
     "format": "dprint fmt --diff",
     "format.check": "dprint check",
-    "·········· PUBLISH.GITHUB": "·····················································",
+    "·········· PUBLISH.GITHUB": "············································",
     "release.github.patch": "pnpm run release.check && pnpm version patch && git push --follow-tags",
     "release.github.minor": "pnpm run release.check && pnpm version minor && git push --follow-tags",
     "release.github.major": "pnpm run release.check && pnpm version major && git push --follow-tags",
-    "release.check": "pnpm format.check && pnpm lint.fix && pnpm typecheck && pnpm test.run",
+    "release.check": "pnpm format.check && pnpm lint && pnpm typecheck && pnpm test.run",
     "·········· REGISTRIES": "··············································",
     "view.registry.github": "pnpm view @finografic/eslint-config --registry=https://npm.pkg.github.com",
     "·········· PACKAGES": "··················································",
@@ -74,26 +74,12 @@
     "tsc.debug": "tsc --pretty --project tsconfig.json",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "typegen": "tsx scripts/typegen.ts",
-    "inspect.eslint-config": "eslint-config-inspector",
+    "build.inspector": "pnpm build && eslint-config-inspector build",
     "·········· HOOKS": "·····················································",
     "prepack": "pnpm build",
-    "prepare": "simple-git-hooks",
-    "watch": "tsup --format esm,cjs --watch",
-    "cli": "tsx scripts/script-executor.ts --config=publish",
-    "build.inspector": "pnpm build && npx @eslint/config-inspector build",
-    "·········· DOCS": "·····················································",
-    "docs": "vitepress dev docs",
-    "docs.md": "pnpm docs.md.clean && pnpm docs.md.build",
-    "docs.md.clean": "del './docs/**/*.md'",
-    "docs.md.build": "NODE_PATH=./node_modules tsx scripts/generate-md-docs",
-    "docs.md.build.V1": "NODE_PATH=./node_modules tsx scripts-V1/generate-md-docs.ts",
-    "docs.md.build.V1.ORIG": "NODE_PATH=./node_modules tsx scripts/generate-md-docs-V1.ts",
-    "docs.press": "pnpm docs.press.clean && pnpm docs.press.build",
-    "docs.press.clean": "del './docs/.vitepress/{cache,dist}'",
-    "docs.press.build": "vitepress build docs",
-    "upgrade.all.deps": "pnpm update --latest"
+    "prepare": "simple-git-hooks"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@eslint/js": "^9.39.2",
     "@stylistic/eslint-plugin": "^5.6.1",
     "@typescript-eslint/eslint-plugin": "^8.51.0",
@@ -107,31 +93,16 @@
     "@eslint/config-inspector": "^1.0.2",
     "@finografic/dprint-config": "^0.8.0",
     "@types/node": "^24.0.0",
-    "del-cli": "6.0.0",
-    "env-cmd": "^10.1.0",
+    "eslint": "^9.39.2",
     "eslint-plugin-markdownlint": "^0.9.0",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-typegen": "2.1.0",
-    "execa": "9.5.3",
-    "jiti": "^2.4.2",
-    "lint-staged": "^16.2.7",
     "simple-git-hooks": "^2.13.1",
     "tsdown": "^0.19.0",
     "tsx": "^4.21.0",
-    "typedoc": "0.28.4",
-    "typedoc-github-theme": "0.3.0",
-    "typedoc-plugin-frontmatter": "1.3.0",
-    "typedoc-plugin-markdown": "4.6.3",
     "typescript": "^5.9.3",
-    "vitepress": "2.0.0-alpha.5",
+    "typescript-eslint": "^8.53.1",
     "vitest": "^4.0.16"
-  },
-  "eslintConfig": {
-    "extends": [
-      "./dist"
-    ]
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
