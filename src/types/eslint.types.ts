@@ -1,3 +1,7 @@
 import type { Linter } from 'eslint';
 
-export type ESLintConfig = Linter.Config;
+export interface ESLintConfig extends Linter.Config {}
+
+export interface ESLintLayer {
+  (): ESLintConfig[];
+}

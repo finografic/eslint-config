@@ -1,13 +1,15 @@
 import { createRequire } from 'node:module';
 
 import type { ParserOptions } from '@typescript-eslint/parser';
-import type { Linter } from 'eslint';
 
 import { ERROR, OFF } from 'constants/settings.constants';
+import type { ESLintConfig } from 'types/eslint.types';
 
 const require = createRequire(import.meta.url);
 
-export type TypeScriptTypedOptions = {
+type ForbiddenParserOptionKeys = 'project' | 'tsconfigRootDir';
+
+export interface TypescriptTypedOptions {
   /**
    * Glob patterns to scope typed rules.
    * Strongly recommended in monorepos.
@@ -16,9 +18,9 @@ export type TypeScriptTypedOptions = {
 
   /**
    * REQUIRED.
-   * Path to the tsconfig used for typed linting.
+   * Path(s) to the tsconfig used for typed linting.
    */
-  project: string;
+  project: string | string[];
 
   /**
    * Recommended in monorepos or when eslint.config.ts is not at repo root.
@@ -29,13 +31,39 @@ export type TypeScriptTypedOptions = {
    * Escape hatch for rare advanced cases.
    * Restricted so the typed boundary stays enforceable.
    */
-  parserOptions?: Omit<ParserOptions, 'project' | 'tsconfigRootDir'>;
-};
+  parserOptions?: Omit<ParserOptions, ForbiddenParserOptionKeys>;
+}
 
 const DEFAULT_TS_FILES = ['**/*.ts', '**/*.tsx'];
 
-export function typescriptTyped(options: TypeScriptTypedOptions): Linter.Config[] {
+function assertNoForbiddenParserOptions(
+  parserOptions: Record<string, unknown> | undefined,
+): void {
+  if (!parserOptions) return;
+
+  if ('project' in parserOptions) {
+    throw new Error(
+      '[typescriptTyped] parserOptions.project is not allowed (use options.project instead)',
+    );
+  }
+
+  if ('tsconfigRootDir' in parserOptions) {
+    throw new Error(
+      '[typescriptTyped] parserOptions.tsconfigRootDir is not allowed (use options.tsconfigRootDir instead)',
+    );
+  }
+}
+
+export function typescriptTyped(options: TypescriptTypedOptions): ESLintConfig[] {
   const files = options.files ?? DEFAULT_TS_FILES;
+
+  assertNoForbiddenParserOptions(options.parserOptions);
+
+  const parserOptions: ParserOptions = {
+    project: options.project,
+    tsconfigRootDir: options.tsconfigRootDir ?? process.cwd(),
+    ...options.parserOptions,
+  };
 
   return [
     {
@@ -43,11 +71,7 @@ export function typescriptTyped(options: TypeScriptTypedOptions): Linter.Config[
 
       languageOptions: {
         parser: require('@typescript-eslint/parser'),
-        parserOptions: {
-          project: options.project,
-          tsconfigRootDir: options.tsconfigRootDir,
-          ...options.parserOptions,
-        },
+        parserOptions,
       },
 
       plugins: {

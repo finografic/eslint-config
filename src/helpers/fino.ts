@@ -1,11 +1,11 @@
 import type { Linter } from 'eslint';
 import { defineConfig } from 'eslint/config';
+import { base } from 'layers/base.layer';
+import { typescript } from 'layers/typescript.layer';
+import type { TypescriptTypedOptions } from 'layers/typescript-typed.layer';
+import { typescriptTyped } from 'layers/typescript-typed.layer';
 
-import { base } from '../layers/base.layer';
-import { typescript } from '../layers/typescript.layer';
-import { typescriptTyped, type TypeScriptTypedOptions } from '../layers/typescript-typed.layer';
-
-export type FinoOptions = {
+export interface FinoOptions {
   /**
    * Enable the base layer (recommended).
    * Default: true
@@ -24,14 +24,14 @@ export type FinoOptions = {
    *
    * NOTE: typed linting must be scoped and have a tsconfig.
    */
-  typed?: Pick<TypeScriptTypedOptions, 'files' | 'project' | 'tsconfigRootDir' | 'parserOptions'>;
+  typed?: Pick<TypescriptTypedOptions, 'files' | 'project' | 'tsconfigRootDir' | 'parserOptions'>;
 
   /**
    * Allows end-user overrides at the end (escape hatch).
    * This is intentionally raw ESLint flat config.
    */
   overrides?: Linter.Config[];
-};
+}
 
 export function fino(options: FinoOptions = {}): Linter.Config[] {
   const {
