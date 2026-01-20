@@ -1,9 +1,4 @@
-import { fino } from './factory';
-
-export * from './configs';
-export * from './factory';
+export { ERROR, OFF, WARN } from './constants';
 export * from './globs';
+export type { ConfigNames, ESLintConfig, Rules } from './types';
 export * from './types';
-export * from './utils';
-
-export default fino;

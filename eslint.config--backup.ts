@@ -15,7 +15,7 @@ const config: Linter.Config[] = [
   // tseslint.configs.stylisticTypeChecked, // ref: https://typescript-eslint.io/getting-started/typed-linting
 
   {
-    ignores: ['dist/**', 'node_modules/**', '.cursor/**', 'docs/.vitepress/**'],
+    ignores: ['dist/**', 'node_modules/**', '.cursor/**'],
   },
 
   {
@@ -39,7 +39,7 @@ const config: Linter.Config[] = [
     plugins: {
       '@typescript-eslint': tseslint.plugin,
       'simple-import-sort': simpleImportSort,
-      stylistic: stylistic as Linter.Processor,
+      stylistic: stylistic,
     },
     rules: {
       // Disable base rules in favor of TS-aware ones
@@ -114,18 +114,16 @@ const config: Linter.Config[] = [
       '.cursor/chat/**',
       '.github/instructions/**',
       '!templates/**',
-      '**/*.md', // TODO: TEMP -- REMOVE
     ],
     languageOptions: {
       parser: markdownlintParser,
     },
     plugins: {
       markdownlint: markdownlintPlugin as Linter.Processor,
-      stylistic: stylistic as Linter.Processor,
+      stylistic: stylistic,
     },
     rules: {
       ...markdownlintPlugin.configs.recommended.rules,
-      'markdownlint/md001': 'off', // Heading levels should only increment by one level at a time
       'markdownlint/md012': 'off', // Multiple consecutive blank lines
       'markdownlint/md013': 'off', // Line length
       'markdownlint/md024': 'off', // Duplicate headings
@@ -136,7 +134,6 @@ const config: Linter.Config[] = [
       'markdownlint/md040': 'off', // Fenced code language
       'markdownlint/md041': 'off', // First line heading
       'markdownlint/md043': 'off', // Required heading structure
-      'markdownlint/md045': 'off', // Images should have alternate text (alt text)
 
       // Formatting consistency
       'stylistic/no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0, maxBOF: 0 }],

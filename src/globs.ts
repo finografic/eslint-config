@@ -47,6 +47,9 @@ export const GLOB_ALL_SRC = [
   GLOB_HTML,
 ];
 
+export const GLOB_ESLINT_FILES = ['**/eslint.config.{js,mjs,cjs}'];
+export const GLOB_VITE_FILES = ['vite.config.*', 'vite.config-debug.*'];
+
 export const GLOB_EXCLUDE = [
   '**/node_modules',
   '**/dist',
@@ -54,7 +57,6 @@ export const GLOB_EXCLUDE = [
   '**/yarn.lock',
   '**/pnpm-lock.yaml',
   '**/bun.lockb',
-
   '**/output',
   '**/coverage',
   '**/temp',

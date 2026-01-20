@@ -1,14 +1,30 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "allowJs": true,
     "strict": true,
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
+    "baseUrl": ".",
+    "paths": {
+      "config/*": [
+        "./src/config/*"
+      ],
+      "constants": [
+        "./src/constants.ts"
+      ],
+      "types/*": [
+        "./src/types/*"
+      ]
+    }
   },
   "include": [
-    "**/*.ts"
-  ]
+    "src/**/*",
+    "eslint.config.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
 }

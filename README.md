@@ -1,4 +1,4 @@
-# @fino/eslint-config
+# @finografic/eslint-config
 
 ```sh
 # 1. Edit pnpm-workspace.yaml to remove the eslint-config directory
@@ -16,7 +16,48 @@ git commit -m "Convert eslint-config to submodule"
 # 5. Don't forget to restore your pnpm-workspace.yaml if you modified it
 ```
 
-## how to reference this as a submodule inside of a monorepo
+---
+
+## INIT: how to install as dep and setup scripts
+
+Install as a dev dependency from the root of the monorepo
+
+```sh
+pnpm add -D @finografic/eslint-config --latest --recursive --registry http://localhost:4873",
+```
+
+Add update script to the root package.json
+
+```json
+{
+  "·········· LINTING": "···················································",
+  "update:eslint-config": "pnpm update @finografic/eslint-config --latest --recursive --registry http://localhost:4873"
+}
+```
+
+## `.npmrc` file - THIS source repository
+
+```config
+# For local development/publishing
+registry=http://localhost:4873
+@finografic:registry=http://localhost:4873
+
+# For GitHub Packages publishing
+//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
+```
+
+## `.npmrc` file - CONSUMER repository
+
+this allows to pull from GitHub Packages, when running `pnpm install`
+
+```config
+@finografic:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
+```
+
+---
+
+## OTHER: how to reference this as a submodule inside of a monorepo
 
 Keep the `workspace:*` specifier since it's still a workspace package
 
@@ -24,11 +65,4 @@ Keep the `workspace:*` specifier since it's still a workspace package
 "devDependencies": {
   "@finografic/eslint-config": "workspace:*"
 }
-```
-
-## run alias helper `_gps` to push new commits to the submodule
-
-```sh
-_gca "updated eslint-config"
-_gps
 ```
