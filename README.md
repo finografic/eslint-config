@@ -1,68 +1,166 @@
-# @finografic/eslint-config
+# 🦋 @finografic/eslint-config
+
+Personal, opinionated **ESLint flat config** for the finografic ecosystem.
+
+This package is designed for:
+
+- TypeScript-first monorepos
+- React + Vite apps
+- Node.js backends
+- strict-but-practical linting
+- explicit, layered configuration (no magic)
+
+> **Formatting is intentionally excluded.**
+> Use a formatter (recommended: `dprint`) alongside ESLint.
+
+---
+
+## Status
+
+This package is currently in an active refactor.
+
+- ✅ Layered exports (`base()`, `typescript()`, `typescriptTyped()`, etc.) are the primary direction
+- ⚠️ `fino()` remains as a transitional / convenience wrapper (migration support)
+
+---
+
+## Installation
 
 ```sh
-# 1. Edit pnpm-workspace.yaml to remove the eslint-config directory
-# (temporarily remove or comment out the packages/* line if needed)
-
-# 2. Remove the directory from git tracking (but keep the files)
-git rm -r --cached packages/eslint-config
-
-# 3. Now you can add it as a submodule
-git submodule add git@github.com:finografic/eslint-config.git packages/eslint-config
-
-# 4. Commit the changes
-git commit -m "Convert eslint-config to submodule"
-
-# 5. Don't forget to restore your pnpm-workspace.yaml if you modified it
+pnpm add -D eslint @finografic/eslint-config
 ```
 
 ---
 
-## INIT: how to install as dep and setup scripts
+## Usage (recommended: layered config)
 
-Install as a dev dependency from the root of the monorepo
+### Minimal (TypeScript)
 
-```sh
-pnpm add -D @finografic/eslint-config --latest --recursive --registry http://localhost:4873",
+```typescript
+// eslint.config.ts
+import type { ESLintConfig } from '@finografic/eslint-config';
+import { base, typescript } from '@finografic/eslint-config';
+
+export default [
+  ...base(),
+  ...typescript(),
+] satisfies ESLintConfig[];
 ```
 
-Add update script to the root package.json
+### With typed TypeScript rules (type-aware)
 
-```json
-{
-  "·········· LINTING": "···················································",
-  "update:eslint-config": "pnpm update @finografic/eslint-config --latest --recursive --registry http://localhost:4873"
-}
-```
+```typescript
+// eslint.config.ts
+import type { ESLintConfig } from '@finografic/eslint-config';
+import { base, typescript, typescriptTyped } from '@finografic/eslint-config';
 
-## `.npmrc` file - THIS source repository
+export default [
+  ...base(),
+  ...typescript(),
 
-```config
-# For local development/publishing
-registry=http://localhost:4873
-@finografic:registry=http://localhost:4873
-
-# For GitHub Packages publishing
-//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
-```
-
-## `.npmrc` file - CONSUMER repository
-
-this allows to pull from GitHub Packages, when running `pnpm install`
-
-```config
-@finografic:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
+  ...typescriptTyped({
+    files: ['apps/client/**/*.{ts,tsx}'],
+    project: './apps/client/tsconfig.json',
+    tsconfigRootDir: new URL('.', import.meta.url).pathname,
+  }),
+] satisfies ESLintConfig[];
 ```
 
 ---
 
-## OTHER: how to reference this as a submodule inside of a monorepo
+## Usage (optional: `defineConfig`)
 
-Keep the `workspace:*` specifier since it's still a workspace package
+Some repos prefer using ESLint’s `defineConfig()` helper when composing many config fragments:
 
+```typescript
+// eslint.config.ts
+import { defineConfig } from 'eslint/config';
+import { base, typescript } from '@finografic/eslint-config';
+
+export default defineConfig(
+  ...base(),
+  ...typescript(),
+);
 ```
-"devDependencies": {
-  "@finografic/eslint-config": "workspace:*"
-}
+
+Local overrides can be appended at the end:
+
+```typescript
+// eslint.config.ts
+import { defineConfig } from 'eslint/config';
+import { base, typescript } from '@finografic/eslint-config';
+
+export default defineConfig(
+  ...base(),
+  ...typescript(),
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
+);
 ```
+
+---
+
+## Transitional API: `fino()` (migration / convenience)
+
+`fino()` exists as an optional wrapper for near-zero config setup and migration from older versions.
+
+It is intentionally thin and composes the same layered exports internally.
+
+```typescript
+// eslint.config.ts
+import { fino } from '@finografic/eslint-config';
+
+export default fino({
+  react: true,
+  node: true,
+});
+```
+
+Typed linting is explicit and scoped:
+
+```typescript
+import { fino } from '@finografic/eslint-config';
+
+export default fino({
+  typed: {
+    files: ['apps/client/**/*.{ts,tsx}'],
+    project: './apps/client/tsconfig.json',
+    tsconfigRootDir: new URL('.', import.meta.url).pathname,
+  },
+});
+```
+
+> `fino()` will remain available until all internal repos complete migration to the layered API.
+
+---
+
+## Layer overview
+
+This package is designed around explicit layers:
+
+- `base()` — universal JS defaults + correctness rules
+- `typescript()` — TypeScript rules **without** type information
+- `typescriptTyped()` — TypeScript rules **with** type information (`parserOptions.project` required)
+- (more layers may be added later: `react()`, `node()`, etc.)
+
+Typed and untyped TypeScript rules are intentionally separated to avoid brittle configuration and unexpected type-aware behavior.
+
+---
+
+## Formatting (external)
+
+This package does not enforce formatting rules.
+
+Recommended formatter:
+
+- `dprint`
+- `@finografic/dprint-config`
+
+---
+
+## License
+
+MIT

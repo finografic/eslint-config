@@ -14,8 +14,17 @@
       "config/*": [
         "./src/config/*"
       ],
-      "constants": [
-        "src/constants/settings.constants.ts"
+      "constants/*": [
+        "./src/constants/*"
+      ],
+      "helpers/*": [
+        "./src/helpers/*"
+      ],
+      "layers/*": [
+        "./src/layers/*"
+      ],
+      "types": [
+        "./src/types"
       ],
       "types/*": [
         "./src/types/*"
