@@ -15,7 +15,7 @@
         "./src/config/*"
       ],
       "constants": [
-        "./src/constants.ts"
+        "src/constants/settings.constants.ts"
       ],
       "types/*": [
         "./src/types/*"

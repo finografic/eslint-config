@@ -22,9 +22,7 @@ const config: Linter.Config[] = [
     files: ['**/*.ts', '**/*.tsx', './*.mjs'],
     languageOptions: {
       parser: tseslint.parser,
-      // projectService: true, // ref: https://typescript-eslint.io/getting-started/typed-linting
       parserOptions: {
-        // Enable typed linting when you want it
         // project: true,
         ecmaVersion: 'latest',
         sourceType: 'module',
@@ -47,7 +45,6 @@ const config: Linter.Config[] = [
       'no-redeclare': 'off',
       'no-console': 'off',
 
-      // TypeScript rules
       '@typescript-eslint/no-unused-vars': [
         'error',
         {

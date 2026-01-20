@@ -1,4 +1,3 @@
-// types/eslint-plugin-markdownlint.d.ts
 declare module 'eslint-plugin-markdownlint' {
   import type { Linter } from 'eslint';
   const plugin: Linter.Plugin;
@@ -11,7 +10,6 @@ declare module 'eslint-plugin-markdownlint/parser.js' {
   export default parser;
 }
 
-// types/typescript-eslint-plugin.d.ts
 declare module '@typescript-eslint/eslint-plugin' {
   import type { Linter } from 'eslint';
   const plugin: Linter.Plugin;
