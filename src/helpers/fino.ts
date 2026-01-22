@@ -1,6 +1,7 @@
 import type { Linter } from 'eslint';
 import { defineConfig } from 'eslint/config';
 import { base } from 'layers/base.layer';
+import { node } from 'layers/node.layer';
 import { typescript } from 'layers/typescript.layer';
 import type { TypescriptTypedOptions } from 'layers/typescript-typed.layer';
 import { typescriptTyped } from 'layers/typescript-typed.layer';
@@ -11,6 +12,12 @@ export interface FinoOptions {
    * Default: true
    */
   base?: boolean;
+
+  /**
+   * Enable Node.js specific rules.
+   * Default: false
+   */
+  node?: boolean;
 
   /**
    * Enable TypeScript (untyped) rules.
@@ -36,6 +43,7 @@ export interface FinoOptions {
 export function fino(options: FinoOptions = {}): Linter.Config[] {
   const {
     base: enableBase = true,
+    node: enableNode = false,
     typescript: enableTypeScript = true,
     typed,
     overrides = [],
@@ -43,6 +51,7 @@ export function fino(options: FinoOptions = {}): Linter.Config[] {
 
   return defineConfig(
     ...(enableBase ? base() : []),
+    ...(enableNode ? node() : []),
     ...(enableTypeScript ? typescript() : []),
     ...(typed
       ? typescriptTyped({

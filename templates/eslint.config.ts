@@ -1,10 +1,11 @@
 // @ts-expect-error
 // @ts-nocheck
 import type { ESLintConfig } from '@finografic/eslint-config';
-import { base, typescript, typescriptTyped } from '@finografic/eslint-config';
+import { base, node, typescript, typescriptTyped } from '@finografic/eslint-config';
 
 export default [
   ...base(),
+  ...node(), // Optional: Node.js specific rules
   ...typescript(),
   ...typescriptTyped({
     project: './tsconfig.json',

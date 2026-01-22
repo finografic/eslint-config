@@ -4,6 +4,7 @@ export type { ESLintConfig } from 'types';
 
 // Layers (primary API)
 export { base } from 'layers/base.layer';
+export { node } from 'layers/node.layer';
 export { typescript } from 'layers/typescript.layer';
 export type { TypescriptTypedOptions } from 'layers/typescript-typed.layer';
 export { typescriptTyped } from 'layers/typescript-typed.layer';
