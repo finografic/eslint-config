@@ -21,5 +21,6 @@
   },
   "[jsonc]": {
     "editor.defaultFormatter": "dprint.dprint"
-  }
+  },
+  "cursor.chat.openInEditor": true
 }
