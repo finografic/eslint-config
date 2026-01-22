@@ -1,41 +1,62 @@
 import js from '@eslint/js';
-import type { Linter } from 'eslint';
 import globals from 'globals';
 
-import { ERROR, OFF, WARN } from 'constants/settings.constants';
+import { ERROR, OFF, WARN } from '../constants/settings.constants';
+import type { ESLintConfig } from 'types/eslint.types';
 
-export function base(): Linter.Config[] {
+export function base(): ESLintConfig[] {
   return [
     js.configs.recommended,
+
     {
       name: '@finografic/base',
+
       languageOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
+
         globals: {
           ...globals.es2021,
           ...globals.node,
         },
       },
+
       linterOptions: {
         reportUnusedDisableDirectives: 'error',
       },
+
       rules: {
-        // correctness / safety
+        /*
+         * ─────────────────────────────────────────────
+         * Correctness / safety
+         * ─────────────────────────────────────────────
+         */
         'no-debugger': ERROR,
         'no-console': OFF,
         'no-constant-condition': [ERROR, { checkLoops: false }],
 
-        // modern JS best-practice
+        /*
+         * ─────────────────────────────────────────────
+         * Modern JS best-practice
+         * ─────────────────────────────────────────────
+         */
         'prefer-const': ERROR,
         'no-var': ERROR,
         'object-shorthand': ERROR,
 
-        // clarity (non-formatting)
+        /*
+         * ─────────────────────────────────────────────
+         * Clarity (non-formatting)
+         * ─────────────────────────────────────────────
+         */
         eqeqeq: [ERROR, 'always', { null: 'ignore' }],
         curly: [ERROR, 'all'],
 
-        // unused
+        /*
+         * ─────────────────────────────────────────────
+         * Unused
+         * ─────────────────────────────────────────────
+         */
         'no-unused-vars': [
           WARN,
           {

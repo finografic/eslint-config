@@ -1,3 +1,5 @@
+// @ts-expect-error - DEV FILE ONLY
+// @ts-nocheck - DEV FILE ONLY
 import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';

@@ -1,31 +1,39 @@
-import { createRequire } from 'node:module';
+import stylistic from '@stylistic/eslint-plugin';
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 
-import type { Linter } from 'eslint';
-
-import { ERROR, OFF, WARN } from 'constants/settings.constants';
-
-const require = createRequire(import.meta.url);
+import { ERROR, OFF, WARN } from '../constants/settings.constants';
+import type { ESLintConfig } from 'types/eslint.types';
 
 const TS_FILES = ['**/*.ts', '**/*.tsx'];
 
-export function typescript(): Linter.Config[] {
+export function typescript(): ESLintConfig[] {
   return [
     {
+      name: '@finografic/typescript',
+
       files: TS_FILES,
 
       languageOptions: {
-        parser: require('@typescript-eslint/parser'),
+        parser: tsParser,
         sourceType: 'module',
       },
 
       plugins: {
-        '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
-        '@stylistic': require('@stylistic/eslint-plugin'),
+        '@typescript-eslint': tseslint,
+        '@stylistic': stylistic,
       },
 
       rules: {
+        /*
+         * ─────────────────────────────────────────────
+         * Layer boundary enforcement
+         * ─────────────────────────────────────────────
+         */
+
         // Disable base unused vars in favor of TS variant
         'no-unused-vars': OFF,
+
         '@typescript-eslint/no-unused-vars': [
           WARN,
           {
@@ -49,7 +57,10 @@ export function typescript(): Linter.Config[] {
         '@typescript-eslint/array-type': [ERROR, { default: 'array-simple' }],
         '@typescript-eslint/ban-ts-comment': WARN,
         '@typescript-eslint/consistent-type-assertions': ERROR,
-        '@typescript-eslint/consistent-type-definitions': [ERROR, 'type'],
+
+        // You said: prefer interface where possible
+        '@typescript-eslint/consistent-type-definitions': [ERROR, 'interface'],
+
         '@typescript-eslint/method-signature-style': [ERROR, 'property'],
         '@typescript-eslint/no-array-constructor': ERROR,
         '@typescript-eslint/no-empty-interface': OFF,
@@ -71,19 +82,12 @@ export function typescript(): Linter.Config[] {
          * ─────────────────────────────────────────────
          */
 
-        '@stylistic/type-annotation-spacing': [
-          ERROR,
-          {
-            before: false,
-            after: true,
-            overrides: {
-              arrow: {
-                before: true,
-                after: true,
-              },
-            },
-          },
-        ],
+        '@stylistic/arrow-spacing': [ERROR, { before: true, after: true }],
+        '@stylistic/type-annotation-spacing': [ERROR, {
+          before: false,
+          after: true,
+          overrides: { arrow: { before: true, after: true } },
+        }],
       },
     },
   ];

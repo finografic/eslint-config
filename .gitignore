@@ -18,6 +18,9 @@
 /dist
 /bin
 
+# IDE
+.cursor
+
 # misc
 .DS_Store
 *.pem

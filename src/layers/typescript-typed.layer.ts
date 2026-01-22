@@ -1,20 +1,19 @@
-import { createRequire } from 'node:module';
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsParser, { type ParserOptions } from '@typescript-eslint/parser';
 
-import type { ParserOptions } from '@typescript-eslint/parser';
-
-import { ERROR, OFF } from 'constants/settings.constants';
+import { ERROR, OFF } from '../constants/settings.constants';
 import type { ESLintConfig } from 'types/eslint.types';
-
-const require = createRequire(import.meta.url);
 
 type ForbiddenParserOptionKeys = 'project' | 'tsconfigRootDir';
 
 export interface TypescriptTypedOptions {
   /**
+   * REQUIRED.
    * Glob patterns to scope typed rules.
-   * Strongly recommended in monorepos.
+   *
+   * Typed linting should always be scoped (especially in monorepos).
    */
-  files?: string[];
+  files: string[];
 
   /**
    * REQUIRED.
@@ -34,12 +33,10 @@ export interface TypescriptTypedOptions {
   parserOptions?: Omit<ParserOptions, ForbiddenParserOptionKeys>;
 }
 
-const DEFAULT_TS_FILES = ['**/*.ts', '**/*.tsx'];
-
 function assertNoForbiddenParserOptions(
   parserOptions: Record<string, unknown> | undefined,
 ): void {
-  if (!parserOptions) return;
+  if (!parserOptions) {return;}
 
   if ('project' in parserOptions) {
     throw new Error(
@@ -55,8 +52,6 @@ function assertNoForbiddenParserOptions(
 }
 
 export function typescriptTyped(options: TypescriptTypedOptions): ESLintConfig[] {
-  const files = options.files ?? DEFAULT_TS_FILES;
-
   assertNoForbiddenParserOptions(options.parserOptions);
 
   const parserOptions: ParserOptions = {
@@ -67,15 +62,17 @@ export function typescriptTyped(options: TypescriptTypedOptions): ESLintConfig[]
 
   return [
     {
-      files,
+      name: '@finografic/typescript/typed',
+
+      files: options.files,
 
       languageOptions: {
-        parser: require('@typescript-eslint/parser'),
+        parser: tsParser,
         parserOptions,
       },
 
       plugins: {
-        '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+        '@typescript-eslint': tseslint,
       },
 
       rules: {
@@ -91,7 +88,7 @@ export function typescriptTyped(options: TypescriptTypedOptions): ESLintConfig[]
         '@typescript-eslint/no-misused-promises': ERROR,
         '@typescript-eslint/no-unnecessary-condition': ERROR,
 
-        /**
+        /*
          * Start conservative on the “unsafe” family, then tighten later.
          * (These can be noisy depending on codebase maturity.)
          */

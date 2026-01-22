@@ -8,5 +8,6 @@ export default [
   ...typescript(),
   ...typescriptTyped({
     project: './tsconfig.json',
+    files: ['**/*.ts', '**/*.tsx'],
   }),
 ] satisfies ESLintConfig[];
