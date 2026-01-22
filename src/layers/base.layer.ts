@@ -50,7 +50,7 @@ export function base(): ESLintConfig[] {
          * ─────────────────────────────────────────────
          */
         eqeqeq: [ERROR, 'always', { null: 'ignore' }],
-        curly: [ERROR, 'all'],
+        curly: [ERROR, 'multi-line'],
 
         /*
          * ─────────────────────────────────────────────

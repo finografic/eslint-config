@@ -36,7 +36,7 @@ export interface TypescriptTypedOptions {
 function assertNoForbiddenParserOptions(
   parserOptions: Record<string, unknown> | undefined,
 ): void {
-  if (!parserOptions) {return;}
+  if (!parserOptions) return;
 
   if ('project' in parserOptions) {
     throw new Error(
