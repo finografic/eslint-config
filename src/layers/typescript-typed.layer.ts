@@ -13,7 +13,7 @@ export interface TypescriptTypedOptions {
    *
    * Typed linting should always be scoped (especially in monorepos).
    */
-  files: string[];
+  files?: string[];
 
   /**
    * REQUIRED.
@@ -51,8 +51,11 @@ function assertNoForbiddenParserOptions(
   }
 }
 
+const DEFAULT_TS_FILES = ['**/*.ts', '**/*.tsx'];
+
 export function typescriptTyped(options: TypescriptTypedOptions): ESLintConfig[] {
   assertNoForbiddenParserOptions(options.parserOptions);
+  const files = options.files ?? DEFAULT_TS_FILES;
 
   const parserOptions: ParserOptions = {
     project: options.project,
@@ -64,7 +67,7 @@ export function typescriptTyped(options: TypescriptTypedOptions): ESLintConfig[]
     {
       name: '@finografic/typescript/typed',
 
-      files: options.files,
+      files,
 
       languageOptions: {
         parser: tsParser,

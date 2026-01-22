@@ -9,10 +9,6 @@ export { typescript } from 'layers/typescript.layer';
 export type { TypescriptTypedOptions } from 'layers/typescript-typed.layer';
 export { typescriptTyped } from 'layers/typescript-typed.layer';
 
-// Monorepo helpers
-export type { TypescriptTypedWorkspaceOptions } from 'helpers/typescript-typed-workspace';
-export { typescriptTypedWorkspace } from 'helpers/typescript-typed-workspace';
-
 // Convenience wrapper (optional)
 export type { FinoOptions } from 'helpers/fino';
 export { fino } from 'helpers/fino';
