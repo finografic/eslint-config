@@ -1,7 +1,7 @@
 {
   "name": "@finografic/eslint-config",
   "type": "module",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "packageManager": "pnpm@10.0.0",
   "description": "Finografic ESLint config (flat config layers)",
   "license": "MIT",
