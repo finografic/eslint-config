@@ -17,7 +17,7 @@ This package is designed for:
 
 ## Status
 
-This package is currently in an active refactor.
+This package is actively evolving toward a fully explicit, layered ESLint flat config.
 
 - ✅ Layered exports (`base()`, `typescript()`, `typescriptTyped()`, etc.) are the primary direction
 - ⚠️ `fino()` remains as a transitional / convenience wrapper (migration support)
@@ -29,6 +29,8 @@ This package is currently in an active refactor.
 ```sh
 pnpm add -D eslint @finografic/eslint-config
 ```
+
+> ESLint plugins are declared as peer dependencies and must be installed by the consumer.
 
 ---
 
@@ -60,7 +62,7 @@ export default [
 
   ...typescriptTyped({
     files: ['apps/client/**/*.{ts,tsx}'],
-    project: './apps/client/tsconfig.json',
+    project: './apps/client/tsconfig.json', // required for type-aware rules
     tsconfigRootDir: new URL('.', import.meta.url).pathname,
   }),
 ] satisfies ESLintConfig[];
@@ -144,7 +146,7 @@ This package is designed around explicit layers:
 - `base()` — universal JS defaults + correctness rules
 - `typescript()` — TypeScript rules **without** type information
 - `typescriptTyped()` — TypeScript rules **with** type information (`parserOptions.project` required)
-- (more layers may be added later: `react()`, `node()`, etc.)
+- (additional layers may be added later: `react()`, `node()`, etc.)
 
 Typed and untyped TypeScript rules are intentionally separated to avoid brittle configuration and unexpected type-aware behavior.
 
