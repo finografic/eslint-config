@@ -1,4 +1,6 @@
 export { ERROR, OFF, WARN } from './constants/settings.constants';
+export type { ImportsOptions } from './layers/imports.layer';
+export { imports } from './layers/imports.layer';
 export type { ESLintConfig } from './types/eslint.types';
 export type { Linter } from 'eslint';
 export type { FinoOptions } from 'helpers/fino';
