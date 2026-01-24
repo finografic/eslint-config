@@ -2,6 +2,7 @@ import type { ESLintConfig } from 'types/eslint.types';
 
 import stylisticPlugin from '@stylistic/eslint-plugin';
 import markdownlintPlugin from 'eslint-plugin-markdownlint';
+import markdownlintParser from 'eslint-plugin-markdownlint/parser.js';
 
 import { DEFAULT_MD_FILES, GLOB_EXCLUDE } from '../constants/globs.constants';
 import { OFF } from '../constants/settings.constants';
@@ -26,6 +27,10 @@ export function markdown(): ESLintConfig[] {
         '.cursor/**',
         '.github/instructions/**',
       ],
+
+      languageOptions: {
+        parser: markdownlintParser,
+      },
 
       plugins: {
         markdownlint: markdownlintPlugin,

@@ -3,6 +3,7 @@ import type { ESLintConfig } from 'types/eslint.types';
 import js from '@eslint/js';
 import globals from 'globals';
 
+import { GLOB_JS, GLOB_JSX, GLOB_TS, GLOB_TSX } from '../constants/globs.constants';
 import { ERROR, OFF, WARN } from '../constants/settings.constants';
 
 /**
@@ -17,6 +18,8 @@ export function base(): ESLintConfig[] {
 
     {
       name: '@finografic/base',
+
+      files: [GLOB_JS, GLOB_JSX, GLOB_TS, GLOB_TSX],
 
       languageOptions: {
         ecmaVersion: 'latest',
