@@ -53,6 +53,12 @@ function assertNoForbiddenParserOptions(
 
 const DEFAULT_TS_FILES = ['**/*.ts', '**/*.tsx'];
 
+/**
+ * Type-aware TypeScript rules (requires type information).
+ *
+ * This layer requires `project` and should be scoped in monorepos.
+ * Only includes rules that need type checking.
+ */
 export function typescriptTyped(options: TypescriptTypedOptions): ESLintConfig[] {
   assertNoForbiddenParserOptions(options.parserOptions);
   const files = options.files ?? DEFAULT_TS_FILES;
@@ -79,22 +85,14 @@ export function typescriptTyped(options: TypescriptTypedOptions): ESLintConfig[]
       },
 
       rules: {
-        /*
-         * ─────────────────────────────────────────────
-         * Type-aware TypeScript rules (REQUIRE project)
-         * ─────────────────────────────────────────────
-         */
-
         '@typescript-eslint/await-thenable': ERROR,
         '@typescript-eslint/no-floating-promises': ERROR,
         '@typescript-eslint/no-for-in-array': ERROR,
         '@typescript-eslint/no-misused-promises': ERROR,
         '@typescript-eslint/no-unnecessary-condition': ERROR,
 
-        /*
-         * Start conservative on the “unsafe” family, then tighten later.
-         * (These can be noisy depending on codebase maturity.)
-         */
+        // Start conservative on the "unsafe" family, then tighten later
+        // (These can be noisy depending on codebase maturity.)
         '@typescript-eslint/no-unsafe-assignment': OFF,
         '@typescript-eslint/no-unsafe-call': OFF,
         '@typescript-eslint/no-unsafe-member-access': OFF,

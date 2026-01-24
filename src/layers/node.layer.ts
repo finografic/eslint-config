@@ -3,6 +3,12 @@ import type { ESLintConfig } from 'types/eslint.types';
 
 const NODE_FILES = ['**/*.js', '**/*.mjs', '**/*.cjs', '**/*.ts'];
 
+/**
+ * Node.js layer: Node.js-specific correctness rules.
+ *
+ * Prevents accidental process.exit() in application code.
+ * Allow in scripts/config files via overrides if needed.
+ */
 export function node(): ESLintConfig[] {
   return [
     {
@@ -11,14 +17,6 @@ export function node(): ESLintConfig[] {
       files: NODE_FILES,
 
       rules: {
-        /*
-         * ─────────────────────────────────────────────
-         * Node.js specific correctness
-         * ─────────────────────────────────────────────
-         */
-
-        // Prevent accidental process.exit() in application code
-        // Allow in scripts/config files via overrides if needed
         'no-process-exit': ERROR,
       },
     },

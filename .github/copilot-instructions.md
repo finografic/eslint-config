@@ -22,6 +22,7 @@ Rule Files
 - Documentation: [.github/instructions/05-documentation.instructions.md](.github/instructions/05-documentation.instructions.md)
 - Modern TS Patterns: [.github/instructions/06-modern-typescript-patterns.instructions.md](.github/instructions/06-modern-typescript-patterns.instructions.md)
 - Variable Naming: [.github/instructions/07-variable-naming.instructions.md](.github/instructions/07-variable-naming.instructions.md)
+- Code Comments, Annotations & Documentation: [.github/instructions/17-code-documentation.instructions.md](.github/instructions/17-code-documentation.instructions.md)
 
 Maintenance
 

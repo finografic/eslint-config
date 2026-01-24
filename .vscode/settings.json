@@ -22,5 +22,7 @@
   "[jsonc]": {
     "editor.defaultFormatter": "dprint.dprint"
   },
-  "cursor.chat.openInEditor": true
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  }
 }

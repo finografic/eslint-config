@@ -41,6 +41,12 @@ function normalizeProjects(projects: string | string[]): string[] {
   return Array.isArray(projects) ? projects : [projects];
 }
 
+/**
+ * Monorepo-friendly typed TypeScript linting helper.
+ *
+ * Accepts multiple tsconfig projects and passes them to `typescriptTyped()`.
+ * More ergonomic than manually constructing the project array.
+ */
 export function typescriptTypedWorkspace(
   options: TypescriptTypedWorkspaceOptions,
 ): ESLintConfig[] {

@@ -40,6 +40,12 @@ export interface FinoOptions {
   overrides?: Linter.Config[];
 }
 
+/**
+ * Convenience wrapper that composes layered configs.
+ *
+ * Useful for quick setup and migration from v1.
+ * For explicit control, use individual layer exports instead.
+ */
 export function fino(options: FinoOptions = {}): Linter.Config[] {
   const {
     base: enableBase = true,

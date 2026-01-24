@@ -7,6 +7,12 @@ import type { ESLintConfig } from 'types/eslint.types';
 
 const TS_FILES = ['**/*.ts', '**/*.tsx'];
 
+/**
+ * TypeScript layer: rules that do NOT require type information.
+ *
+ * Enables TypeScript parser and enforces syntax correctness.
+ * No `parserOptions.project` - works immediately without tsconfig.
+ */
 export function typescript(): ESLintConfig[] {
   return [
     {
@@ -25,13 +31,7 @@ export function typescript(): ESLintConfig[] {
       },
 
       rules: {
-        /*
-         * ─────────────────────────────────────────────
-         * Layer boundary enforcement
-         * ─────────────────────────────────────────────
-         */
-
-        // Disable base unused vars in favor of TS variant
+        // Disable base rule to avoid duplicate reporting in TS files
         'no-unused-vars': OFF,
 
         '@typescript-eslint/no-unused-vars': [
@@ -47,20 +47,11 @@ export function typescript(): ESLintConfig[] {
           },
         ],
 
-        /*
-         * ─────────────────────────────────────────────
-         * TypeScript rules (NO type information required)
-         * ─────────────────────────────────────────────
-         */
-
         '@typescript-eslint/adjacent-overload-signatures': ERROR,
         '@typescript-eslint/array-type': [ERROR, { default: 'array-simple' }],
         '@typescript-eslint/ban-ts-comment': WARN,
         '@typescript-eslint/consistent-type-assertions': ERROR,
-
-        // You said: prefer interface where possible
         '@typescript-eslint/consistent-type-definitions': [ERROR, 'interface'],
-
         '@typescript-eslint/method-signature-style': [ERROR, 'property'],
         '@typescript-eslint/no-array-constructor': ERROR,
         '@typescript-eslint/no-empty-interface': OFF,
@@ -76,18 +67,15 @@ export function typescript(): ESLintConfig[] {
         '@typescript-eslint/prefer-function-type': ERROR,
         '@typescript-eslint/unified-signatures': ERROR,
 
-        /*
-         * ─────────────────────────────────────────────
-         * Stylistic (non-formatting, TS-only)
-         * ─────────────────────────────────────────────
-         */
-
-        '@stylistic/arrow-spacing': [ERROR, { before: true, after: true }],
-        '@stylistic/type-annotation-spacing': [ERROR, {
-          before: false,
-          after: true,
-          overrides: { arrow: { before: true, after: true } },
-        }],
+        // This rule stays in ESLint because dprint cannot express it
+        '@stylistic/type-annotation-spacing': [
+          ERROR,
+          {
+            before: false,
+            after: true,
+            overrides: { arrow: { before: true, after: true } },
+          },
+        ],
       },
     },
   ];
