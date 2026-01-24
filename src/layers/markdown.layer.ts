@@ -29,7 +29,7 @@ export function markdown(): ESLintConfig[] {
 
       plugins: {
         markdownlint: markdownlintPlugin,
-        stylistic: stylisticPlugin,
+        '@stylistic': stylisticPlugin,
       },
 
       rules: {

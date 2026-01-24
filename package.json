@@ -95,7 +95,6 @@
     "@commitlint/config-conventional": "^20.2.0",
     "@eslint/config-inspector": "^1.0.2",
     "@finografic/dprint-config": "^0.8.0",
-    "@stylistic/eslint-plugin": "^5.6.1",
     "@types/node": "^24.0.0",
     "dprint": "^0.51.1",
     "eslint": "^9.39.2",
