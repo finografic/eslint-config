@@ -7,7 +7,6 @@ import type { Linter } from 'eslint';
 import markdownlintPlugin from 'eslint-plugin-markdownlint';
 import markdownlintParser from 'eslint-plugin-markdownlint/parser.js';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
-
 // NOTE: ALL @typescript-eslint/eslint-plugin (over 100 rules))
 // https://typescript-eslint.io/rules/
 import tseslint from 'typescript-eslint';

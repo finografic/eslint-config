@@ -1,8 +1,8 @@
 import { defineConfig } from 'eslint/config';
+
 import { base } from 'layers/base.layer';
 import { typescript } from 'layers/typescript.layer';
 import { typescriptTyped, type TypescriptTypedOptions } from 'layers/typescript-typed.layer';
-
 import type { ESLintConfig } from 'types/eslint.types';
 
 export interface ComposeOptions {

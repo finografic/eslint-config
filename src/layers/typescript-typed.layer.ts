@@ -1,8 +1,8 @@
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsParser, { type ParserOptions } from '@typescript-eslint/parser';
 
-import { ERROR, OFF } from '../constants/settings.constants';
 import type { ESLintConfig } from 'types/eslint.types';
+import { ERROR, OFF } from '../constants/settings.constants';
 
 type ForbiddenParserOptionKeys = 'project' | 'tsconfigRootDir';
 

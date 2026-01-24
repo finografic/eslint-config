@@ -2,8 +2,8 @@ import stylistic from '@stylistic/eslint-plugin';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 
-import { ERROR, OFF, WARN } from '../constants/settings.constants';
 import type { ESLintConfig } from 'types/eslint.types';
+import { ERROR, OFF, WARN } from '../constants/settings.constants';
 
 const TS_FILES = ['**/*.ts', '**/*.tsx'];
 

@@ -9,6 +9,7 @@
   "prettier.enable": false,
 
   "dprint.experimentalLsp": true,
+  "dprint.verbose": true,
 
   "[typescript]": {
     "editor.defaultFormatter": "dprint.dprint"

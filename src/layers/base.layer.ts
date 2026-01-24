@@ -1,8 +1,8 @@
 import js from '@eslint/js';
 import globals from 'globals';
 
-import { ERROR, OFF, WARN } from '../constants/settings.constants';
 import type { ESLintConfig } from 'types/eslint.types';
+import { ERROR, OFF, WARN } from '../constants/settings.constants';
 
 /**
  * Base layer: universal JavaScript safety and correctness.
