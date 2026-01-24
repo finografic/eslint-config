@@ -11,6 +11,8 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 // https://typescript-eslint.io/rules/
 import tseslint from 'typescript-eslint';
 
+import { OFF } from './src/constants/settings.constants';
+
 const config: Linter.Config[] = [
   js.configs.recommended,
   // tseslint.configs.strictTypeChecked, // ref: https://typescript-eslint.io/getting-started/typed-linting
@@ -43,9 +45,9 @@ const config: Linter.Config[] = [
     },
     rules: {
       // Disable base rules in favor of TS-aware ones
-      'no-unused-vars': 'off',
-      'no-redeclare': 'off',
-      'no-console': 'off',
+      'no-unused-vars': OFF,
+      'no-redeclare': OFF,
+      'no-console': OFF,
 
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -113,7 +115,6 @@ const config: Linter.Config[] = [
       '.cursor/chat/**',
       '.github/instructions/**',
       '!templates/**',
-      '**/*.md', // TODO: TEMP -- REMOVE
     ],
     languageOptions: {
       parser: markdownlintParser,
@@ -124,18 +125,18 @@ const config: Linter.Config[] = [
     },
     rules: {
       ...markdownlintPlugin.configs.recommended.rules,
-      'markdownlint/md001': 'off', // Heading levels should only increment by one level at a time
-      'markdownlint/md012': 'off', // Multiple consecutive blank lines
-      'markdownlint/md013': 'off', // Line length
-      'markdownlint/md024': 'off', // Duplicate headings
-      'markdownlint/md025': 'off', // Single h1
-      'markdownlint/md026': 'off', // Trailing punctuation in heading
-      'markdownlint/md029': 'off', // List style
-      'markdownlint/md036': 'off', // No mphasis as heading
-      'markdownlint/md040': 'off', // Fenced code language
-      'markdownlint/md041': 'off', // First line heading
-      'markdownlint/md043': 'off', // Required heading structure
-      'markdownlint/md045': 'off', // Images should have alternate text (alt text)
+      'markdownlint/md001': OFF, // Heading levels should only increment by one level at a time
+      'markdownlint/md012': OFF, // Multiple consecutive blank lines
+      'markdownlint/md013': OFF, // Line length
+      'markdownlint/md024': OFF, // Duplicate headings
+      'markdownlint/md025': OFF, // Single h1
+      'markdownlint/md026': OFF, // Trailing punctuation in heading
+      'markdownlint/md029': OFF, // List style
+      'markdownlint/md036': OFF, // No mphasis as heading
+      'markdownlint/md040': OFF, // Fenced code language
+      'markdownlint/md041': OFF, // First line heading
+      'markdownlint/md043': OFF, // Required heading structure
+      'markdownlint/md045': OFF, // Images should have alternate text (alt text)
 
       // Formatting consistency
       'stylistic/no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0, maxBOF: 0 }],

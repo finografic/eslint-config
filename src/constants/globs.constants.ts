@@ -127,3 +127,7 @@ export const GLOB_EXCLUDE = [
   '**/auto-import?(s).d.ts',
   '**/components.d.ts',
 ];
+
+// NOTE: DEFAULT
+export const DEFAULT_TS_FILES = [GLOB_TS, GLOB_TSX];
+export const DEFAULT_MD_FILES = [GLOB_MARKDOWN];

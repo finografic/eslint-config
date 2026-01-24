@@ -1,11 +1,19 @@
 // @ts-expect-error
 // @ts-nocheck
 import type { ESLintConfig } from '@finografic/eslint-config';
-import { base, node, typescript, typescriptTypedWorkspace } from '@finografic/eslint-config';
+import {
+  base,
+  imports,
+  markdown,
+  node,
+  typescript,
+  typescriptTypedWorkspace,
+} from '@finografic/eslint-config';
 
 export default [
   ...base(),
   ...imports(),
+  ...markdown(),
   ...node(),
   ...typescript(),
 

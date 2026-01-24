@@ -1,4 +1,6 @@
 import { base } from 'layers/base.layer';
+import { imports } from 'layers/imports.layer';
+import { markdown } from 'layers/markdown.layer';
 import { node } from 'layers/node.layer';
 import { typescript } from 'layers/typescript.layer';
 import type { TypescriptTypedOptions } from 'layers/typescript-typed.layer';
@@ -13,6 +15,18 @@ export interface FinoOptions {
    * Default: true
    */
   base?: boolean;
+
+  /**
+   * Enable imports rules.
+   * Default: true
+   */
+  imports?: boolean;
+
+  /**
+   * Enable markdown rules.
+   * Default: true
+   */
+  markdown?: boolean;
 
   /**
    * Enable Node.js specific rules.
@@ -50,6 +64,8 @@ export interface FinoOptions {
 export function fino(options: FinoOptions = {}): Linter.Config[] {
   const {
     base: enableBase = true,
+    imports: enableImports = true,
+    markdown: enableMarkdown = true,
     node: enableNode = false,
     typescript: enableTypeScript = true,
     typed,
@@ -58,6 +74,8 @@ export function fino(options: FinoOptions = {}): Linter.Config[] {
 
   return defineConfig(
     ...(enableBase ? base() : []),
+    ...(enableImports ? imports() : []),
+    ...(enableMarkdown ? markdown() : []),
     ...(enableNode ? node() : []),
     ...(enableTypeScript ? typescript() : []),
     ...(typed

@@ -3,6 +3,7 @@ import type { ESLintConfig } from 'types/eslint.types';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsParser, { type ParserOptions } from '@typescript-eslint/parser';
 
+import { DEFAULT_TS_FILES } from '../constants/globs.constants';
 import { ERROR, OFF } from '../constants/settings.constants';
 
 type ForbiddenParserOptionKeys = 'project' | 'tsconfigRootDir';
@@ -51,8 +52,6 @@ function assertNoForbiddenParserOptions(
     );
   }
 }
-
-const DEFAULT_TS_FILES = ['**/*.ts', '**/*.tsx'];
 
 /**
  * Type-aware TypeScript rules (requires type information).
