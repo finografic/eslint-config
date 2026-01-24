@@ -5,7 +5,8 @@ import { base, node, typescript, typescriptTypedWorkspace } from '@finografic/es
 
 export default [
   ...base(),
-  ...node(), // Optional: Node.js specific rules
+  ...imports(),
+  ...node(),
   ...typescript(),
 
   // Monorepo: typed linting scoped to specific apps/packages

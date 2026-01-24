@@ -1,4 +1,5 @@
 import type { ESLintConfig } from 'types/eslint.types';
+
 import { GLOB_ESLINT_FILES, GLOB_JS } from '../constants/globs.constants';
 import { ERROR, OFF } from '../constants/settings.constants';
 

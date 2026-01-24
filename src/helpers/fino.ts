@@ -1,11 +1,11 @@
-import type { Linter } from 'eslint';
-import { defineConfig } from 'eslint/config';
-
 import { base } from 'layers/base.layer';
 import { node } from 'layers/node.layer';
 import { typescript } from 'layers/typescript.layer';
 import type { TypescriptTypedOptions } from 'layers/typescript-typed.layer';
 import { typescriptTyped } from 'layers/typescript-typed.layer';
+
+import type { Linter } from 'eslint';
+import { defineConfig } from 'eslint/config';
 
 export interface FinoOptions {
   /**

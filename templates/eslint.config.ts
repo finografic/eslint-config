@@ -5,7 +5,8 @@ import { base, node, typescript, typescriptTyped } from '@finografic/eslint-conf
 
 export default [
   ...base(),
-  ...node(), // Optional: Node.js specific rules
+  ...imports(),
+  ...node(),
   ...typescript(),
   ...typescriptTyped({
     project: './tsconfig.json',

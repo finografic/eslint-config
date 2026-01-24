@@ -1,7 +1,8 @@
+import type { ESLintConfig } from 'types/eslint.types';
+
 import js from '@eslint/js';
 import globals from 'globals';
 
-import type { ESLintConfig } from 'types/eslint.types';
 import { ERROR, OFF, WARN } from '../constants/settings.constants';
 
 /**
