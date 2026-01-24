@@ -62,7 +62,7 @@
     "release.github.patch": "pnpm run release.check && pnpm version patch && git push --follow-tags",
     "release.github.minor": "pnpm run release.check && pnpm version minor && git push --follow-tags",
     "release.github.major": "pnpm run release.check && pnpm version major && git push --follow-tags",
-    "release.check": "pnpm format.check && pnpm lint && pnpm typecheck && pnpm test.run",
+    "release.check": "pnpm format.check && pnpm lint.fix && pnpm typecheck && pnpm test.run",
     "·········· REGISTRIES": "··············································",
     "view.registry.github": "pnpm view @finografic/eslint-config --registry=https://npm.pkg.github.com",
     "·········· PACKAGES": "··················································",
@@ -106,12 +106,11 @@
     "vitest": "^4.0.16"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,mjs,cjs}": [
+    "*.{ts,tsx,js,jsx,mjs,cjs}": [
       "eslint --fix"
     ],
-    "*.{ts,tsx,js,mjs,cjs,json,jsonc,md,yml,yaml}": [
-      "dprint fmt",
-      "eslint --fix"
+    "*.{json,jsonc,md,yml,yaml}": [
+      "dprint fmt"
     ]
   }
 }

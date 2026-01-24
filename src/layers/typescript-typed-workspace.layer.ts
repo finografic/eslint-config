@@ -1,4 +1,5 @@
 import type { ESLintConfig } from 'types/eslint.types';
+
 import { typescriptTyped, type TypescriptTypedOptions } from './typescript-typed.layer';
 
 /**
