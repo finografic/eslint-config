@@ -1,14 +1,13 @@
 {
   "name": "@finografic/eslint-config",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.9.3",
   "packageManager": "pnpm@10.0.0",
   "description": "Finografic ESLint config (flat config layers)",
   "license": "MIT",
   "keywords": [
     "eslint",
     "eslint-config",
-    "flat-config",
     "finografic"
   ],
   "author": {
@@ -34,13 +33,13 @@
     "dist",
     "templates"
   ],
-  "main": "./dist/index.mjs",
-  "types": "./dist/index.d.mts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.mts",
-      "import": "./dist/index.mjs",
-      "default": "./dist/index.mjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
   "scripts": {
