@@ -8,6 +8,7 @@
   "keywords": [
     "eslint",
     "eslint-config",
+    "flat-config",
     "finografic"
   ],
   "author": {
@@ -33,13 +34,13 @@
     "dist",
     "templates"
   ],
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
     }
   },
   "scripts": {
